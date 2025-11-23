@@ -5,33 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - StreamHub Store</title>
     <style>
-         * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: white;
-            color: #333;
+            font-family: 'Arial', sans-serif;
+            background: url('images/logo4.png') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            background: transparent;
+            min-height: 100vh;
         }
 
-        /* ⭐⭐ الهيدر مع اللوجو والتنقل على اليمين ⭐⭐ */
+        /* ⭐⭐ الهيدر ⭐⭐ */
         .main-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
-            padding: 20px 0;
-            border-bottom: 2px solid #eee;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .logo-container {
@@ -44,171 +51,307 @@
             width: 60px;
             height: 60px;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .store-title {
             font-size: 32px;
             font-weight: bold;
-            color: #333;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* ⭐⭐ التنقل على اليمين ⭐⭐ */
+        /* ⭐⭐ التنقل ⭐⭐ */
         .top-navigation {
             display: flex;
-            gap: 25px;
+            gap: 15px;
         }
 
         .nav-item {
             text-decoration: none;
-            color: #333;
+            color: white;
             font-size: 18px;
             font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 5px;
+            padding: 10px 20px;
+            border-radius: 8px;
             transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .nav-item:hover {
-            background: #f8f9fa;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
 
         .nav-item.active {
-            background: #007bff;
+            background: rgba(255, 255, 255, 0.3);
             color: white;
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
-        /* محتوى Checkout */
+        /* ⭐⭐ محتوى Checkout ⭐⭐ */
         .checkout-card {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
             margin-bottom: 30px;
+            backdrop-filter: blur(10px);
         }
 
         .checkout-header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .checkout-title {
-            font-size: 28px;
-            color: #333;
+            font-size: 32px;
+            color: white;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
+        .checkout-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+        }
+
+        /* ⭐⭐ ملخص الطلب ⭐⭐ */
         .order-summary {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            border-left: 4px solid #007bff;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 4px solid #4cd964;
         }
 
         .product-name {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
-            color: #333;
-            margin-bottom: 5px;
+            color: white;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .product-price {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
-            color: #28a745;
+            color: #4cd964;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         .store-badge {
-            background: #ffc107;
+            background: rgba(255, 193, 7, 0.8);
             color: #333;
-            padding: 3px 8px;
-            border-radius: 4px;
+            padding: 4px 10px;
+            border-radius: 5px;
             font-size: 12px;
             font-weight: bold;
-            margin-left: 5px;
+            margin-left: 8px;
         }
 
+        /* ⭐⭐ نموذج الدفع ⭐⭐ */
         .checkout-form {
             margin-top: 25px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: bold;
-            color: #333;
+            color: white;
+            font-size: 16px;
         }
 
         .form-input {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
+            padding: 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
             font-size: 16px;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
         }
 
         .form-input:focus {
             outline: none;
-            border-color: #007bff;
+            border-color: #4cd964;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
         }
 
         .divider {
             border: none;
-            border-top: 2px solid #e9ecef;
-            margin: 25px 0;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 30px 0;
         }
 
+        /* ⭐⭐ خيار الإشعارات ⭐⭐ */
+        .notification-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .notification-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .notification-option input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #4cd964;
+        }
+
+        /* ⭐⭐ تنبيه ⭐⭐ */
         .alert-note {
-            background: #e3f2fd;
-            border: 1px solid #bbdefb;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 20px 0;
+            background: rgba(227, 242, 253, 0.2);
+            border: 1px solid rgba(187, 222, 251, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
             text-align: center;
+            backdrop-filter: blur(5px);
         }
 
         .alert-note strong {
-            color: #1976d2;
+            color: #4cd964;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
         }
 
+        .alert-note p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* ⭐⭐ زر الدفع ⭐⭐ */
         .payment-btn {
             display: block;
             width: 100%;
-            background: #28a745;
+            background: rgba(76, 217, 100, 0.8);
             color: white;
-            padding: 15px 20px;
+            padding: 18px 20px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         .payment-btn:hover {
-            background: #229954;
+            background: rgba(76, 217, 100, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 217, 100, 0.3);
         }
 
-        /* الفوتر */
+        .payment-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* ⭐⭐ تأكيد الطلب ⭐⭐ */
+        .confirmation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .confirmation-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 450px;
+            color: #333;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .confirmation-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-card h3 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .confirmation-card p {
+            font-size: 16px;
+            color: #5d6d7e;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .confirmation-card strong {
+            color: #2c3e50;
+        }
+
+        .confirmation-card button {
+            background: #4cd964;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .confirmation-card button:hover {
+            background: #44c554;
+        }
+
+        /* ⭐⭐ الفوتر ⭐⭐ */
         .main-footer {
             text-align: center;
             margin-top: 50px;
-            padding: 30px 0;
-            border-top: 2px solid #eee;
-            color: #666;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .creators {
             font-size: 16px;
             font-weight: bold;
             margin-top: 10px;
-            color: #333;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         /* ⭐⭐ تحميل ⭐⭐ */
@@ -255,7 +398,7 @@
         <div class="checkout-card">
             <div class="checkout-header">
                 <h1 class="checkout-title">Checkout (Store)</h1>
-                <p class="checkout-subtitle">Complete your Store purchase</p>
+                <p class="checkout-subtitle">Complete your demo purchase</p>
             </div>
 
             <!-- ⭐⭐ ملخص الطلب ⭐⭐ -->
@@ -292,7 +435,7 @@
                 <!-- ⭐⭐ تنبيه ⭐⭐ -->
                 <div class="alert-note">
                     <strong>Note:</strong>
-                    <p>This checkout is a simulated Store. No real payment is taken. You will receive a Store access code for testing purposes.</p>
+                    <p>This checkout is a simulated Store. No real payment is taken. You will receive a demo access code for testing purposes.</p>
                 </div>
 
                 <!-- ⭐⭐ زر الدفع ⭐⭐ -->
@@ -334,7 +477,7 @@
         emailjs.init("zfsc2TbBY2B_ipi4P");
 
         // ⭐⭐ إيميل المتجر (للاستقبال) ⭐⭐
-        const STORE_EMAIL = "chefsaid102@gmail.com"; // ⭐⭐ غير هذا بإيميلك ⭐⭐
+        const STORE_EMAIL = "saidsabil17@gmail.com"; // ⭐⭐ غير هذا بإيميلك ⭐⭐
 
         // معالجة نموذج الدفع
         document.getElementById('checkoutForm').addEventListener('submit', function(e) {
