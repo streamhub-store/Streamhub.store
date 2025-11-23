@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - StreamHub Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('images/logo4.png') no-repeat center center fixed; /* ⭐ نفس الخلفية */
+            background-size: cover;
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: transparent;
+            min-height: 100vh;
+        }
+
+        /* ⭐⭐ الهيدر ⭐⭐ */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background:rgba(231, 226, 226, 0.85);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-left {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .store-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #000000;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        /* ⭐⭐ التنقل ⭐⭐ */
+        .top-navigation {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active {
+            background: rgba(0, 123, 255, 0.8);
+            color: white;
+            border-color: rgba(0, 123, 255, 0.5);
+        }
+
+        /* ⭐⭐ محتوى Dashboard ⭐⭐ */
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .dashboard-title {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .dashboard-subtitle {
+            font-size: 18px;
+            color:  #5d6d7e;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ⭐⭐ بطاقات الطلبات ⭐⭐ */
+        .orders-container {
+            margin: 40px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .order-card {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            background:  rgba(82, 80, 80, 0.95);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            border-left: 4px solid #4cd964;
+        }
+
+        .order-card:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .order-product {
+            font-size: 20px;
+            font-weight: bold;
+            color: #eeefef;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .order-date {
+            color: #000000;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .access-code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .no-orders {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(8px);
+        }
+
+        /* ⭐⭐ زر مسح الطلبات ⭐⭐ */
+        .clear-btn {
+            display: block;
+            width: 220px;
+            margin: 30px auto;
+            background: rgba(26, 71, 185, 0.7);
+            color: rgb(239, 239, 239);
+            padding: 14px 25px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .clear-btn:hover {
+            background: rgba(200, 35, 51, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3);
+        }
+
+        /* ⭐⭐ الفوتر ⭐⭐ */
+        .main-footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(239, 236, 236, 0.85);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #5d6d7e;
+}
+
+        .creators {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #2c3e50;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ⭐⭐ الهيدر مع اللوجو والتنقل على اليمين ⭐⭐ -->
+        <header class="main-header">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="StreamHub Logo" class="logo-left">
+                <h1 class="store-title">StreamHub Store</h1>
+            </div>
+            
+            <!-- ⭐⭐ التنقل على اليمين ⭐⭐ -->
+            <nav class="top-navigation">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="products.html" class="nav-item">Products</a>
+                <a href="dashboard.html" class="nav-item active">Dashboard</a>
+            </nav>
+        </header>
+
+        <!-- ⭐⭐ محتوى Dashboard ⭐⭐ -->
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Dashboard — Your Store Orders</h1>
+            <p class="dashboard-subtitle">Manage your Store purchases and access codes</p>
+        </div>
+
+        <!-- ⭐⭐ حاوية الطلبات ⭐⭐ -->
+        <div class="orders-container" id="ordersContainer">
+            <!-- الطلبات تظهر هنا بالجافاسكريبت -->
+        </div>
+
+        <!-- ⭐⭐ زر مسح الطلبات ⭐⭐ -->
+        <button class="clear-btn" onclick="clearAllOrders()">🗑️ Clear Store Orders</button>
+
+        <!-- ⭐⭐ الفوتر ⭐⭐ -->
+        <footer class="main-footer">
+            <p class="footer-text">StreamHub Store — Enjoy seamless access to premium-style content.</p>
+            <p class="creators">Created By Said - Ayoub - Issa - Nour</p>
+        </footer>
+    </div>
+
+    <script>
+        // بيانات المنتجات
+        const products = {
+            1: { name: "Netflix Premium (Store) - 1 month", prefix: "NET" },
+            2: { name: "Spotify Premium (Store) - 1 month", prefix: "SPO" },
+            3: { name: "Disney+ Premium (Store) - 1 month", prefix: "DIS" },
+            4: { name: "Chill Pack: Netflix + Spotify (Store)", prefix: "BUN" },
+            5: { name: "Entertainment Bundle (Store)", prefix: "BUN" }
+        };
+
+        // توليد كود وصول عشوائي
+        function generateAccessCode(prefix) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let randomPart = '';
+            for (let i = 0; i < 7; i++) {
+                randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return `${prefix}-${randomPart}`;
+        }
+
+        // حفظ الطلب في localStorage
+        function saveOrder(productId, customerName, customerEmail) {
+            const orders = JSON.parse(localStorage.getItem('storeOrders')) || [];
+            const product = products[productId];
+            
+            const newOrder = {
+                id: Date.now(),
+                productId: productId,
+                productName: product.name,
+                accessCode: generateAccessCode(product.prefix),
+                timestamp: new Date().toLocaleString(),
+                customerName: customerName,
+                customerEmail: customerEmail
+            };
+            
+            orders.unshift(newOrder); // إضافة في البداية
+            localStorage.setItem('storeOrders', JSON.stringify(orders));
+            
+            return newOrder;
+        }
+
+        // عرض الطلبات
+        function displayOrders() {
+            const ordersContainer = document.getElementById('ordersContainer');
+            const orders = JSON.parse(localStorage.getItem('storeOrders')) || [];
+            
+            if (orders.length === 0) {
+                ordersContainer.innerHTML = `
+                    <div class="no-orders">
+                        <h3>No Store Orders Yet</h3>
+                        <p>Your orders will appear here after making Store purchases.</p>
+                        <p>👉 Go to <a href="products.html" style="color: #4cd964; text-decoration: none;">Products</a> to make your first Store purchase!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let ordersHTML = '';
+            orders.forEach(order => {
+                ordersHTML += `
+                    <div class="order-card">
+                        <div class="order-product">${order.productName}</div>
+                        <div class="order-date">${order.timestamp} — ${order.customerEmail}</div>
+                        <div><strong>Access code:</strong> <span class="access-code">${order.accessCode}</span></div>
+                    </div>
+                `;
+            });
+            
+            ordersContainer.innerHTML = ordersHTML;
+        }
+
+        // مسح جميع الطلبات
+        function clearAllOrders() {
+            if (confirm('Are you sure you want to clear all store orders?')) {
+                localStorage.removeItem('storeOrders');
+                displayOrders();
+            }
+        }
+
+        // معالجة عملية الشراء من checkout
+        function processPurchase() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const purchased = urlParams.get('purchased');
+            const productId = urlParams.get('productId');
+            const customerName = urlParams.get('name');
+            const customerEmail = urlParams.get('email');
+            
+            if (purchased === 'true' && productId) {
+                saveOrder(productId, customerName, customerEmail);
+                
+                // إزالة معاملات URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+
+        // التهيئة عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            processPurchase();
+            displayOrders();
+        });
+    </script>
+</body>
+</html>

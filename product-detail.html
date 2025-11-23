@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - StreamHub Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: white;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ⭐⭐ الهيدر مع اللوجو والتنقل على اليمين ⭐⭐ */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            border-bottom: 2px solid #eee;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-left {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .store-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* ⭐⭐ التنقل على اليمين ⭐⭐ */
+        .top-navigation {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background: #f8f9fa;
+        }
+
+        .nav-item.active {
+            background: #007bff;
+            color: white;
+        }
+
+        /* محتوى تفاصيل المنتج */
+        .product-detail-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .product-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .product-category {
+            color: #007bff;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .product-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .product-price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #28a745;
+            margin: 20px 0;
+        }
+
+        .features-list {
+            margin: 25px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            font-size: 20px;
+        }
+
+        .purchase-btn {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+            transition: background 0.3s ease;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .purchase-btn:hover {
+            background: #0056b3;
+        }
+
+        /* الفوتر */
+        .main-footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px 0;
+            border-top: 2px solid #eee;
+            color: #666;
+        }
+
+        .creators {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ⭐⭐ الهيدر مع اللوجو والتنقل على اليمين ⭐⭐ -->
+        <header class="main-header">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="StreamHub Logo" class="logo-left">
+                <h1 class="store-title">StreamHub Store</h1>
+            </div>
+            
+            <!-- ⭐⭐ التنقل على اليمين ⭐⭐ -->
+            <nav class="top-navigation">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="products.html" class="nav-item">Products</a>
+                <a href="dashboard.html" class="nav-item">Dashboard</a>
+            </nav>
+        </header>
+
+        <!-- محتوى تفاصيل المنتج -->
+        <div class="product-detail-card">
+            <div class="product-header">
+                <div class="product-category" id="product-category">Streaming</div>
+                <h1 class="product-title" id="product-title">Netflix Premium (Store) - 1 month</h1>
+                <p class="product-description" id="product-description">HD + 4 screens. Store product only.</p>
+                <div class="product-price" id="product-price">$17.99</div>
+            </div>
+
+            <div class="features-list">
+                <div class="feature-item">
+                    <span class="feature-icon">🎬</span>
+                    <span>HD Streaming Quality</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📱</span>
+                    <span>4 Screens Simultaneously</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">⚡</span>
+                    <span>Instant Store Access</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🔄</span>
+                    <span>Cancel Anytime</span>
+                </div>
+            </div>
+
+            <a href="checkout.html?product=1" class="purchase-btn">
+                🛒 Proceed to Checkout (Store)
+            </a>
+        </div>
+
+        <!-- الفوتر -->
+        <footer class="main-footer">
+            <p>StreamHub Store — No real subscriptions are provided.</p>
+            <p class="creators">Created By Said - Ayoub - Issa - Nour</p>
+        </footer>
+    </div>
+
+    <script>
+        // معالجة بيانات المنتج من URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            
+            const products = {
+                1: {
+                    name: "Netflix Premium (Store) - 1 month",
+                    description: "HD + 4 screens. Store product only.",
+                    price: "$17.99",
+                    category: "Streaming"
+                },
+                2: {
+                    name: "Spotify Premium (Store) - 1 month", 
+                    description: "Ad-free music. Store product only.",
+                    price: "$9.99",
+                    category: "Streaming"
+                },
+                3: {
+                    name: "Disney+ Premium (Store) - 1 month",
+                    description: "All Disney content. Store product only.",
+                    price: "$11.99", 
+                    category: "Streaming"
+                },
+                4: {
+                    name: "Chill Pack: Netflix + Spotify (Store)",
+                    description: "Bundle Store: both services for one price.",
+                    price: "$24.99",
+                    category: "Bundle"
+                }
+            };
+
+            if (productId && products[productId]) {
+                const product = products[productId];
+                document.getElementById('product-title').textContent = product.name;
+                document.getElementById('product-description').textContent = product.description;
+                document.getElementById('product-price').textContent = product.price;
+                document.getElementById('product-category').textContent = product.category;
+                
+                // تحديث رابط الشراء
+                document.querySelector('.purchase-btn').href = `checkout.html?product=${productId}`;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - StreamHub Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('images/logo4.png') no-repeat center center fixed; /* ⭐ الخلفية الجديدة */
+            background-size: cover;
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: transparent;
+            min-height: 100vh;
+        }
+
+        /* ⭐⭐ الهيدر ⭐⭐ */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(231, 226, 226, 0.85);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-left {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .store-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: rgb(3, 3, 3);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* ⭐⭐ التنقل ⭐⭐ */
+        .top-navigation {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active {
+            background: rgba(0, 123, 255, 0.8);
+            color: white;
+            border-color: rgba(0, 123, 255, 0.5);
+        }
+
+        /* ⭐⭐ المحتوى الرئيسي ⭐⭐ */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .page-title {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            color: #5d6d7e;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ⭐⭐ الفئات ⭐⭐ */
+        .categories-section {
+            margin: 30px 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .categories-title {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .categories-list {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .category-btn {
+            padding: 12px 24px;
+            background: rgba(67, 47, 247, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            color: rgb(0, 0, 0);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .category-btn:hover {
+            background: rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .category-btn.active {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        /* ⭐⭐ جميع المنتجات ⭐⭐ */
+        .products-section {
+            margin: 40px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* ⭐⭐ بطاقات المنتجات ⭐⭐ */
+        .product-card {
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.85);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-category {
+            color: #4cd964;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .product-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .product-description {
+            color: #5d6d7e;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #27ae60;
+            margin: 15px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .view-details-btn {
+            display: inline-block;
+            background: rgba(0, 123, 255, 0.8);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .view-details-btn:hover {
+            background: rgba(0, 86, 179, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        /* ⭐⭐ الفوتر ⭐⭐ */
+        .main-footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(237, 233, 233, 0.85);
+            border-radius: 15px;
+            border: 1px solid rgba(107, 104, 104, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #5d6d7e;
+}
+
+        .creators {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #2c3e50;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- الهيدر مع اللوجو والتنقل على اليمين -->
+        <header class="main-header">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="StreamHub Logo" class="logo-left">
+                <h1 class="store-title">StreamHub Store</h1>
+            </div>
+            
+            <!-- التنقل على اليمين -->
+            <nav class="top-navigation">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="products.html" class="nav-item active">Products</a>
+                <a href="dashboard.html" class="nav-item">Dashboard</a>
+            </nav>
+        </header>
+
+        <!-- المحتوى الرئيسي -->
+        <div class="page-header">
+            <h1 class="page-title">Our Store Products</h1>
+            <p class="page-subtitle">
+                Explore our streaming service Stores. All products are for Storenstration purposes only.
+            </p>
+        </div>
+
+        <!-- الفئات -->
+        <div class="categories-section">
+            <h3 class="categories-title">Browse by Category</h3>
+            <div class="categories-list">
+                <button class="category-btn active" data-category="all">All Products</button>
+                <button class="category-btn" data-category="streaming">Streaming Services</button>
+                <button class="category-btn" data-category="bundle">Bundles</button>
+            </div>
+        </div>
+
+        <!-- جميع المنتجات -->
+        <section class="products-section">
+            <h2 class="section-title">All Store Products</h2>
+            
+            <div class="products-grid" id="productsContainer">
+                <!-- Netflix -->
+                <div class="product-card" data-category="streaming">
+                    <div class="product-category">Streaming</div>
+                    <h3 class="product-name">Netflix Premium (Store) - 1 month</h3>
+                    <p class="product-description">HD + 4 screens. Store product only.</p>
+                    <div class="product-price">$17.99</div>
+                    <a href="product-detail.html?id=1" class="view-details-btn">View Details</a>
+                </div>
+
+                <!-- Spotify -->
+                <div class="product-card" data-category="streaming">
+                    <div class="product-category">Streaming</div>
+                    <h3 class="product-name">Spotify Premium (Store) - 1 month</h3>
+                    <p class="product-description">Ad-free music. Store product only.</p>
+                    <div class="product-price">$9.99</div>
+                    <a href="product-detail.html?id=2" class="view-details-btn">View Details</a>
+                </div>
+
+                <!-- Disney+ -->
+                <div class="product-card" data-category="streaming">
+                    <div class="product-category">Streaming</div>
+                    <h3 class="product-name">Disney+ Premium (Store) - 1 month</h3>
+                    <p class="product-description">All Disney content. Store product only.</p>
+                    <div class="product-price">$11.99</div>
+                    <a href="product-detail.html?id=3" class="view-details-btn">View Details</a>
+                </div>
+
+                <!-- Bundle -->
+                <div class="product-card" data-category="bundle">
+                    <div class="product-category">Bundle</div>
+                    <h3 class="product-name">Chill Pack: Netflix + Spotify (Store)</h3>
+                    <p class="product-description">Bundle Store: both services for one price.</p>
+                    <div class="product-price">$24.99</div>
+                    <a href="product-detail.html?id=4" class="view-details-btn">View Details</a>
+                </div>
+
+                <!-- Bundle 2 -->
+                <div class="product-card" data-category="bundle">
+                    <div class="product-category">Bundle</div>
+                    <h3 class="product-name">Entertainment Bundle (Store)</h3>
+                    <p class="product-description">Netflix, Spotify, Disney+ bundle.</p>
+                    <div class="product-price">$35.99</div>
+                    <a href="product-detail.html?id=5" class="view-details-btn">View Details</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- الفوتر -->
+        <footer class="main-footer">
+            <p class="footer-text">StreamHub Store — Enjoy seamless access to premium-style content.</p>
+            <p class="creators">Created By Said - Ayoub - Issa - Nour</p>
+        </footer>
+    </div>
+
+    <script>
+        // كود الفلاتر
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // إزالة النشاط من جميع الأزرار
+                document.querySelectorAll('.category-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                
+                // إضافة النشاط للزر المختار
+                this.classList.add('active');
+                
+                const category = this.getAttribute('data-category');
+                filterProducts(category);
+            });
+        });
+
+        function filterProducts(category) {
+            const allProducts = document.querySelectorAll('.product-card');
+            
+            allProducts.forEach(product => {
+                if (category === 'all') {
+                    product.style.display = 'block';
+                } else {
+                    if (product.getAttribute('data-category') === category) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

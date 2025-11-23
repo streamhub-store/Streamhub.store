@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreamHub Store</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+    background: url('images/logo4.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: transparent;
+    min-height: 100vh;
+}
+
+/* ⭐⭐ الهيدر شفاف ⭐⭐ */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(231, 226, 226, 0.85); /* شفافية */
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-left {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.store-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #000000;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+}
+
+/* ⭐⭐ التنقل شفاف ⭐⭐ */
+.top-navigation {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #2c3e50;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.nav-item.active {
+    background: rgba(0, 123, 255, 0.8);
+    color: white;
+    border-color: rgba(0, 123, 255, 0.5);
+}
+
+/* ⭐⭐ المحتوى الرئيسي شفاف ⭐⭐ */
+.welcome-section {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.welcome-title {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.welcome-text {
+    font-size: 18px;
+    color: #5d6d7e;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.divider {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    margin: 30px 0;
+}
+
+/* ⭐⭐ قسم المنتجات شفاف ⭐⭐ */
+.featured-section {
+    text-align: center;
+    margin: 40px 0;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+}
+
+.section-title {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* ⭐⭐ بطاقات المنتجات شفافة ⭐⭐ */
+.product-card {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.product-description {
+    color: #5d6d7e;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.product-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #27ae60;
+    margin: 15px 0;
+}
+
+.view-details-btn {
+    display: inline-block;
+    background: rgba(0, 123, 255, 0.8);
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.view-details-btn:hover {
+    background: rgba(0, 86, 179, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* ⭐⭐ الفوتر شفاف ⭐⭐ */
+.main-footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 30px;
+    background: rgba(239, 236, 236, 0.85);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.footer-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #5d6d7e;
+}
+
+.creators {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #2c3e50;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- الهيدر مع اللوجو والتنقل على اليمين -->
+        <header class="main-header">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="StreamHub Logo" class="logo-left">
+                <h1 class="store-title">StreamHub Store</h1>
+            </div>
+            
+            <!-- التنقل على اليمين -->
+            <nav class="top-navigation">
+                <a href="index.html" class="nav-item active">Home</a>
+                <a href="products.html" class="nav-item">Products</a>
+                <a href="dashboard.html" class="nav-item">Dashboard</a>
+            </nav>
+        </header>
+
+        <!-- المحتوى الرئيسي -->
+        <section class="welcome-section">
+            <h2 class="welcome-title">Welcome to StreamHub Store</h2>
+            <p class="welcome-text">
+                This Store lets users explore streaming subscription products and "purchase" them with a simulated checkout. No real money is used.
+            </p>
+        </section>
+
+        <hr class="divider">
+
+        <!-- المنتجات المميزة -->
+        <section class="featured-section">
+            <h2 class="section-title">Featured Store Products</h2>
+            
+            <div class="products-grid">
+                <!-- Netflix -->
+                <div class="product-card">
+                    <h3 class="product-name">Netflix Premium (Store) - 1 month</h3>
+                    <p class="product-description">HD + 4 screens. Store product only.</p>
+                    <div class="product-price">$17.99</div>
+                    <a href="product-detail.html?id=1" class="view-details-btn">View Details</a>
+                </div>
+
+                <!-- Spotify -->
+                <div class="product-card">
+                    <h3 class="product-name">Spotify Premium (Store) - 1 month</h3>
+                    <p class="product-description">Ad-free music. Store product only.</p>
+                    <div class="product-price">$9.99</div>
+                    <a href="product-detail.html?id=2" class="view-details-btn">View Details</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- الفوتر -->
+        <footer class="main-footer">
+            <p class="footer-text">StreamHub Store — Enjoy seamless access to premium-style content.</p>
+            <p class="creators">Created By Said - Ayoub - Issa - Nour</p>
+        </footer>
+    </div>
+</body>
+</html>
